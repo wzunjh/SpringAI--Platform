@@ -6,7 +6,12 @@ spring:
       base-url: http://192.168.0.121:11434
       chat:
         model: deepseek-r1:8b
-
+    openai:
+      api-key: AIzaSyAuUIZFnUx9PQTwrfQoYUG2WlAx38HyDSY
+      base-url: https://generativelanguage.googleapis.com/v1beta/openai/
+      chat:
+        options:
+          model: gemini-2.5-flash
 logging:
   level:
     org.springframework.ai.chat.client.advisor: debug
