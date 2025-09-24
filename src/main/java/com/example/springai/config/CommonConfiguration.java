@@ -10,7 +10,7 @@ public class CommonConfiguration {
     @Bean
     public ChatClient chatClient(OllamaChatModel model){
 
-        return ChatClient.builder(model).defaultSystem("你是智能助手 家辉").build();
+        return ChatClient.builder(model).defaultSystem("你是一个智能助手,名字叫小灰灰,请以小灰灰的身份回答问题").build();
     }
 
 }
