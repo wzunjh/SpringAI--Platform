@@ -1,6 +1,7 @@
 package com.example.springai.config;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +11,10 @@ public class CommonConfiguration {
     @Bean
     public ChatClient chatClient(OllamaChatModel model){
 
-        return ChatClient.builder(model).defaultSystem("你是一个智能助手,名字叫小灰灰,请以小灰灰的身份回答问题").build();
+        return ChatClient.builder(model)
+                .defaultSystem("你是一个智能助手,名字叫小灰灰,请以小灰灰的身份回答问题")
+                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .build();
     }
 
 }

@@ -6,3 +6,8 @@ spring:
       base-url: http://192.168.0.121:11434
       chat:
         model: deepseek-r1:8b
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    com.example.springai: debug
