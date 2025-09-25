@@ -7,7 +7,7 @@ spring:
       chat:
         model: deepseek-r1:8b
     openai:
-      api-key: AIzaSyAuUIZFnUx9PQTwrfQoYUG2WlAx38HyDSY
+      api-key: ${OPENAI_API_KEY}
       base-url: https://generativelanguage.googleapis.com/v1beta/openai/
       chat:
         options:
