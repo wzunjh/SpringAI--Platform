@@ -32,7 +32,7 @@ public class ChatHistoryController {
     public List<MessageVO> getChatHistory(@PathVariable("type") String type, @PathVariable("chatId") String chatId){
         List<Message> messages = chatMemory.get(chatId);
 
-        if (messages == null){
+        if (messages.isEmpty()){
             return List.of();
         }
         return messages.stream().map(MessageVO::new).toList();
