@@ -26,10 +26,6 @@ public class MessageVO {
 
         this.content= message.getText();
 
-
-
     }
-
-
 
 }
