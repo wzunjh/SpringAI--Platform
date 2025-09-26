@@ -22,9 +22,9 @@ import java.util.List;
 public class CourseTools {
 
 
-    private ICourseService iCourseService;
-    private ICourseReservationService iCourseReservationService;
-    private ISchoolService iSchoolService;
+    private final ICourseService iCourseService;
+    private final ICourseReservationService iCourseReservationService;
+    private final ISchoolService iSchoolService;
 
 
     @Tool(description = "根据条件查询课程")
