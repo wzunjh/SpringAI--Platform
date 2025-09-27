@@ -1,7 +1,7 @@
 <template>
   <div class="home" :class="{ 'dark': isDark }">
     <div class="container">
-      <h1 class="title">黑马 AI 应用中心</h1>
+      <h1 class="title">AI 应用中心</h1>
       <div class="cards-grid">
         <router-link 
           v-for="app in aiApps" 
@@ -50,7 +50,7 @@ const aiApps = ref([
   },
   {
     id: 3,
-    title: '黑马智能客服',
+    title: '程序员家辉智能客服',
     description: '24小时在线的智能课程咨询师',
     route: '/customer-service',
     icon: UserGroupIcon
