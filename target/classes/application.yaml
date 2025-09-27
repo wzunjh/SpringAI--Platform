@@ -12,6 +12,11 @@ spring:
       chat:
         options:
           model: gemini-2.5-flash
+      embedding:
+        options:
+          model: gemini-embedding-001
+          dimensions: 3072
+
 
 
   datasource:
