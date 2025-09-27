@@ -36,7 +36,7 @@ public class LocalPdfFileRepository implements FileRepository{
             }
         }
         chatFiles.put(chatId,filename);
-        return false;
+        return true;
     }
 
     @Override

@@ -18,7 +18,7 @@ spring:
           dimensions: 1536
     vectorstore:
       qdrant:
-        host: localhost        # Qdrant 服务地址
+        host: 127.0.0.1       # Qdrant 服务地址
         port: 6334             # gRPC 端口，默认 6334
         api-key: ""
         collection-name: spring001  # 创建的 collection 名称
