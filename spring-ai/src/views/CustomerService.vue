@@ -29,7 +29,7 @@
             <ComputerDesktopIcon class="avatar" />
             <div class="info">
               <h3>小黑</h3>
-              <p>黑马程序员智能客服</p>
+              <p>程序员家辉智能客服</p>
             </div>
           </div>
         </div>
