@@ -2,10 +2,10 @@ spring:
   application:
     name: SpringAI
   ai:
-    ollama:
-      base-url: http://192.168.0.121:11434
-      chat:
-        model: deepseek-r1:8b
+#    ollama:
+#      base-url: http://192.168.0.121:11434
+#      chat:
+#        model: deepseek-r1:8b
     openai:
       api-key: ${OPENAI_API_KEY}
       base-url: https://generativelanguage.googleapis.com/v1beta/openai/
@@ -15,7 +15,16 @@ spring:
       embedding:
         options:
           model: gemini-embedding-001
-          dimensions: 3072
+          dimensions: 1536
+    vectorstore:
+      qdrant:
+        host: localhost        # Qdrant 服务地址
+        port: 6334             # gRPC 端口，默认 6334
+        api-key: ""
+        collection-name: spring001  # 创建的 collection 名称
+        use-tls: false         # 本地不需要 TLS
+        initialize-schema: false  # 已经手动创建过 schema，这里设为 false
+
 
 
 

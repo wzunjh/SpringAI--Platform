@@ -5,9 +5,12 @@ import com.example.springai.tools.CourseTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +22,7 @@ public class CommonConfiguration {
         return MessageWindowChatMemory.builder().build();
     }
 
+    // 正常交流客户端配置
 
     @Bean
     public ChatClient chatClient(OpenAiChatModel model, ChatMemory chatMemory){
@@ -58,6 +62,21 @@ public class CommonConfiguration {
                         MessageChatMemoryAdvisor.builder(chatMemory).build()
                 )
                 .defaultTools(courseTools)
+                .build();
+    }
+
+    @Bean
+    public ChatClient pdfChatClient(OpenAiChatModel model, ChatMemory chatMemory, VectorStore vectorStore){
+
+        return ChatClient.builder(model)
+                .defaultSystem("请根据上下文回答问题,遇到上下文没有的问题,")
+                .defaultAdvisors(
+                        new SimpleLoggerAdvisor(),
+                        MessageChatMemoryAdvisor.builder(chatMemory).build(),
+                        QuestionAnswerAdvisor.builder(vectorStore)
+                                .searchRequest(SearchRequest.builder().similarityThreshold(0.6).topK(3).build())
+                                .build()
+                )
                 .build();
     }
 

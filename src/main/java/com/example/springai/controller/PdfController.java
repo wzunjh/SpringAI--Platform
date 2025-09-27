@@ -2,9 +2,13 @@ package com.example.springai.controller;
 
 
 import com.example.springai.entity.vo.Result;
+import com.example.springai.repository.ChatHistoryRepository;
 import com.example.springai.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.reader.ExtractedTextFormatter;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
@@ -15,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import reactor.core.publisher.Flux;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -30,6 +35,34 @@ public class PdfController {
     private final FileRepository fileRepository;
 
     private final VectorStore vectorStore;
+
+    private final ChatClient pdfChatClient;
+
+    private final ChatHistoryRepository chatHistoryRepository;
+
+    @RequestMapping(value = "/chat",produces = "text/html;charset=utf-8")
+    public Flux<String> chat(String prompt, String chatId){
+
+        Resource file = fileRepository.getFile(chatId);
+
+        if (!file.exists()){
+            throw new RuntimeException("File not found");
+        }
+
+        // 存储会话ID
+
+        chatHistoryRepository.save("pdf",chatId);
+
+        // 请求模型
+
+        return pdfChatClient.prompt()
+                .user(prompt)
+                .advisors(a->a.param(ChatMemory.CONVERSATION_ID,chatId))
+                .advisors(a->a.param(QuestionAnswerAdvisor.FILTER_EXPRESSION,"file_name =='" + file.getFilename() + "' "))
+                .stream()
+                .content();
+    }
+
 
 
 //    文件上传

@@ -2,10 +2,10 @@ spring:
   application:
     name: SpringAI
   ai:
-    ollama:
-      base-url: http://192.168.0.121:11434
-      chat:
-        model: deepseek-r1:8b
+#    ollama:
+#      base-url: http://192.168.0.121:11434
+#      chat:
+#        model: deepseek-r1:8b
     openai:
       api-key: ${OPENAI_API_KEY}
       base-url: https://generativelanguage.googleapis.com/v1beta/openai/
