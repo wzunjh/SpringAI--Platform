@@ -30,6 +30,7 @@ spring:
         request-timeout: 20s
         stdio:
           servers-configuration: classpath:/mcp/mcp-servers-config.json
+        enabled: false
 
     # 引入阿里巴巴百炼平台
     dashscope:
