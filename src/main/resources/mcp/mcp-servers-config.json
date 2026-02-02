@@ -1,23 +1,5 @@
 {
   "mcpServers": {
-    "amap-maps": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@amap/amap-maps-mcp-server"
-      ],
-      "env": {
-        "AMAP_MAPS_API_KEY": "1f8eec4ec1838895981fbba14c6677fb"
-      }
-    },
-    "jina-mcp-tools": {
-      "command": "npx",
-      "args": [
-        "jina-mcp-tools"
-      ],
-      "env": {
-        "JINA_API_KEY": "jina_bcfe9945c18f4aa68f405f87c3a03991i0aQHASGSsqPNUxdN1sepGhOOFME"
-      }
-    }
+
   }
 }
